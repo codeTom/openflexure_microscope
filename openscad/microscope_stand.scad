@@ -9,13 +9,13 @@ use <main_body.scad>;
 use <feet.scad>;
 
 motor_board = false;
-
+low_cost = true;
 t = 1.5;
 
 raspi_z = motor_board?1:5;
 raspi_board = [85, 58, 19]; //this is wrong, should be 85, 56, 19
 
-h = raspi_z + raspi_board[2] + 5;
+h = low_cost?10:(raspi_z + raspi_board[2] + 5);
 
 module foot_footprint(tilt=0){
     // the footprint of one foot/actuator column
@@ -191,7 +191,8 @@ union(){
         top_shell();
         
         // space for pi connectors
-        translate([0,0,raspi_z]) pi_connectors();
+        if(!low_cost)
+            translate([0,0,raspi_z]) pi_connectors();
         
         // indent the top
         //translate([0,0,h]) linear_extrude(999) footprint();
@@ -220,7 +221,9 @@ union(){
     }
     
     // supports for the pi circuit board
-    pi_supports();
+    if(!low_cost){
+        pi_supports();
+    }
 }
 
 
