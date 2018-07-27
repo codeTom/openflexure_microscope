@@ -15,7 +15,7 @@ t = 1.5;
 raspi_z = motor_board?1:5;
 raspi_board = [85, 58, 19]; //this is wrong, should be 85, 56, 19
 
-h = low_cost?10:(raspi_z + raspi_board[2] + 5);
+h = low_cost?9:(raspi_z + raspi_board[2] + 5);
 
 module foot_footprint(tilt=0){
     // the footprint of one foot/actuator column
@@ -188,11 +188,15 @@ module top_shell(){
 
 union(){
     difference(){
+        
         top_shell();
         
         // space for pi connectors
-        if(!low_cost)
+        if(low_cost){//hole for the camera wire
+            translate([0,0,7]) rotate([90,90,109.5])  intersection(){scale([0.6,1,1]){cylinder(h=100,r=10.5);}translate([0,0,50])cube([11,18,100],center=true);}
+        }else{
             translate([0,0,raspi_z]) pi_connectors();
+        }
         
         // indent the top
         //translate([0,0,h]) linear_extrude(999) footprint();
