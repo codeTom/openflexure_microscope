@@ -168,6 +168,7 @@ module wall_between_actuators(){
 }
 
 ///////////////////// MAIN STRUCTURE STARTS HERE ///////////////
+module main_structure(){
 exterior_brim(r=2);
 difference(){
 union(){
@@ -195,7 +196,7 @@ union(){
    // this must get built up carefully: we start with the bridges round the edge, then work inwards.
 	difference(){
 		hull() each_leg() translate([0,-zflex_l-d,flex_z2+1+(stage_t-1)/2]) cube([leg_middle_w+2*zflex_l,2*d,stage_t-1],center=true); //hole in the stage
-        translate([0,0,flex_z2+1]) rotate(45) hole_from_bottom(hole_r,h=999,base_w=2*(leg_r+leg_middle_w/2-stage_flex_w - hole_r));
+        translate([0,0,flex_z2+1]) rotate(0) hole_from_bottom(hole_r,h=999,base_w=2*hole_r+2);
 		each_leg() reflect([1,0,0]) translate([leg_middle_w/2,-zflex_l-4,flex_z2+1.5]) cylinder(r=3/2*0.95,h=999); //mounting holes
 	}
 	
@@ -299,4 +300,6 @@ union(){
 //rotate([90,0,0]) cylinder(r=999,h=999,$fn=4);
 //translate([0,0,50]) cylinder(r=999,h=999,$fn=4);
 }
+}
 //%rotate(180) translate([0,2.5,-2]) cube([25,24,2],center=true);
+main_structure();
