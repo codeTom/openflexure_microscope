@@ -217,6 +217,10 @@ union(){
             cylinder(d=4.4, h=20, center=true);
             cylinder(d=2.9, h=999, center=true);
         }
+        //hole for endstop wires
+        if(feet_endstops){
+            translate([20,48,0])cylinder(r=7,h=5,center=true);
+        }
     }
     
     // supports for the pi circuit board
