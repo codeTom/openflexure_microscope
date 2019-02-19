@@ -32,8 +32,8 @@ big_stage = true; //this option is obsolete and must now always be true...
 motor_lugs = true;
 endstops = false; //motor_lugs;
 version_numstring = "5.20.0-b";
-camera = "picamera_2"; //see cameras/camera.scad for valid values
-optics = "pilens"; //see optics.scad for valid values
+camera = "cmount"; //see cameras/camera.scad for valid values
+optics = "rms_f50d13"; //see optics.scad for valid values
 led_r = 5/2; //size of the LED used for illumination
 feet_endstops = true;
 beamsplitter = false; //enables a cut-out in some optics modules for a beamsplitter
@@ -106,15 +106,15 @@ illumination_clip_y = (-(leg_r-zflex_l-wall_t/2+leg_outer_w/2)/sqrt(2)
                       // illumination/back foot.  This is set to
                       // coincide with the wall between the back
                       // two legs. TODO: remove this
-illumination_arm_screws = [[20,z_nut_y,sample_z-2],[-20,z_nut_y,sample_z-2], 
+illumination_arm_screws = [[20,z_nut_y,sample_z-2],[-20,z_nut_y,sample_z-2],
                            [0,(leg_r + leg_outer_w)/sqrt(2) + 4,sample_z-2]];
-                      // positions of screws that mount the adjustable version of the 
+                      // positions of screws that mount the adjustable version of the
                       // illumination arm
 condenser_clip_y = -8; //position of dovetail for old condenser assembly TODO: rename this
 base_mounting_holes = [[-20,z_nut_y-4,0],
                        [20,z_nut_y-4,0],
                        [-z_flexure_x-4,big_stage?-8:-4,0],
-                       [z_flexure_x+4,big_stage?-8:-4,0]]; 
+                       [z_flexure_x+4,big_stage?-8:-4,0]];
                        // holes to screw the microscope to a baseplate
 
 endstop_extra_ringheight=feet_endstops?1:0;
